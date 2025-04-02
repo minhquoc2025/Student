@@ -6,6 +6,7 @@ export interface Student{
   id? :number;
   name : string;
   isComplete : boolean;
+
 }
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,14 @@ export class StudentService {
   getStudentId( id: number): Observable<Student>
   {
     return this.http.get<Student>(`${this.apiUrl}/${id}`);
+  }
+  searchStudent(name: string): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.apiUrl}/search/${name}`);
+  }
+  // updateStudent(id: number, student: Student): Observable<void> {
+  //   return this.http.put<void>(`${this.apiUrl}/${id}`, student);
+  // }
+  updateStudent(student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.apiUrl}/${student.id}`, student);
   }
 }

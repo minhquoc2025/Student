@@ -18,6 +18,7 @@ export class AppComponent {
   title = 'Student-Angular';
   studentData : any[] = [];
   selectedStudent : Student | null = null;
+  searchName: string = '';
   newStudent: Student = {name:'', isComplete:true }
   constructor(private studentService: StudentService , private http: HttpClient){}
 
@@ -42,8 +43,36 @@ export class AppComponent {
       this.loadStudent();
     })
   }
-  editStudent(id:number):void{
-    // this.selectedStudent = {...student};
+  editStudent(student: Student): void {
+    this.selectedStudent = { ...student }; 
+  }
+  updateStudent(): void {
+    // if (this.selectedStudent) {
+    //   this.studentService.updateStudent(this.selectedStudent.id!, this.selectedStudent).subscribe(() => {
+    //     this.loadStudent();
+    //     this.selectedStudent = null;
+    //   });
+    // }
+    if (!this.selectedStudent) return;
+
+    this.studentService.updateStudent(this.selectedStudent).subscribe(updatedStudent => {
+      const index = this.studentData.findIndex(s => s.id === updatedStudent.id);
+      if (index !== -1) {
+        this.studentData[index] = updatedStudent; // Cập nhật danh sách
+      }
+      this.selectedStudent = null; // Thoát chế độ chỉnh sửa
+    }, error => {
+      console.error("Lỗi cập nhật sinh viên:", error);
+    });
+  }
+  searchStudent(): void {
+    if (this.searchName.trim()) {
+      this.studentService.searchStudent(this.searchName).subscribe(data => {
+        this.studentData = data;
+      });
+    } else {
+      this.loadStudent();
+    }
   }
 }
 export class PaginatorOverviewExample {};
