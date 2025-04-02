@@ -16,6 +16,10 @@ builder.Services.AddDbContext<TodoContext>(opt =>
         options.AddPolicy("AllowAngular",
             PolicyServiceCollectionExtensions =>PolicyServiceCollectionExtensions.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
     });
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<TodoContext>(options => options.UseSqlServer(connectionString));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
