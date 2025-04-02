@@ -1,5 +1,10 @@
 .border-quo{
-    border: solid blue;
-    border-radius: 10px;
+    border: 1px solid blue;
 
 }
+h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#fd0bdd, #1a51e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

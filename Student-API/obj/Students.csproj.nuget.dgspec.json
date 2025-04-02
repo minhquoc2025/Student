@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Me\\Project\\Student\\Student-API\\Students.csproj": {}
+    "C:\\Users\\quoc.truong\\Documents\\GitHub\\Student\\Student-API\\Students.csproj": {}
   },
   "projects": {
-    "D:\\Me\\Project\\Student\\Student-API\\Students.csproj": {
+    "C:\\Users\\quoc.truong\\Documents\\GitHub\\Student\\Student-API\\Students.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Me\\Project\\Student\\Student-API\\Students.csproj",
+        "projectUniqueName": "C:\\Users\\quoc.truong\\Documents\\GitHub\\Student\\Student-API\\Students.csproj",
         "projectName": "Students",
-        "projectPath": "D:\\Me\\Project\\Student\\Student-API\\Students.csproj",
-        "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-        "outputPath": "D:\\Me\\Project\\Student\\Student-API\\obj\\",
+        "projectPath": "C:\\Users\\quoc.truong\\Documents\\GitHub\\Student\\Student-API\\Students.csproj",
+        "packagesPath": "C:\\Users\\quoc.truong\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\quoc.truong\\Documents\\GitHub\\Student\\Student-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\quoc.truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
