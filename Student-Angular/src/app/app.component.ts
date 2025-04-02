@@ -42,8 +42,8 @@ export class AppComponent {
       this.loadStudent();
     })
   }
-  editStudent(student:Student):void{
-    this.selectedStudent ={...student};
+  editStudent(id:number):void{
+    // this.selectedStudent = {...student};
   }
 }
-export class PaginatorOverviewExample {}
+export class PaginatorOverviewExample {};
