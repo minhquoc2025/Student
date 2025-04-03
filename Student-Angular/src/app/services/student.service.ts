@@ -33,7 +33,7 @@ export class StudentService {
     return this.http.get<Student>(`${this.apiUrl}/${id}`);
   }
   searchStudent(name: string): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.apiUrl}/search/${name}`);
+    return this.http.get<Student[]>(`${this.apiUrl}/search?name=${name}`);
   }
   // updateStudent(id: number, student: Student): Observable<void> {
   //   return this.http.put<void>(`${this.apiUrl}/${id}`, student);

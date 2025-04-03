@@ -9,16 +9,17 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<TodoContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// builder.Services.AddDbContext<TodoContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// builder.Services.AddDbContext<TodoContext>(opt =>
-//     opt.UseInMemoryDatabase("TodoList"));
-//     builder.Services.AddCors(options =>
-//     {
-//         options.AddPolicy("AllowAngular",
-//             PolicyServiceCollectionExtensions =>PolicyServiceCollectionExtensions.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
-//     });
+builder.Services.AddDbContext<TodoContext>(opt =>
+    //opt.UseInMemoryDatabase("TodoList"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAngular",
+            PolicyServiceCollectionExtensions =>PolicyServiceCollectionExtensions.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+    });
 
 
 

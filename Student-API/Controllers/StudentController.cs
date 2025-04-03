@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
@@ -71,6 +72,42 @@ public class StudentController : ControllerBase
 
         return NoContent();
     }
+
+
+    //GetSearch
+    [HttpGet("search")]
+    public async Task<ActionResult<IEnumerable<TodoItemDTO>>> SearchStudents ([FromQuery] string name)
+    {
+        if(string.IsNullOrEmpty(name)){
+            return BadRequest("Teen khoong được để trống!");
+        }
+        var students = await _context.TodoItems.Where(u => u.Name.Contains(name)).ToListAsync();
+        if(students.Count == 0)
+        {
+            return NotFound("không tìm thấy học sinh nào!");
+        }
+        return Ok(students);
+    }
+    // [HttpGet("{search}")]
+    // public async Task<ActionResult<IEnumerable<TodoItemDTO>>> Search(string name)
+    // {
+    //     try
+    //     {
+    //         var result = await _context.TodoItems.Where(u => u.Name.Contains(name)).ToListAsync();
+
+    //         if (result.Any())
+    //         {
+    //             return Ok(result);
+    //         }
+
+    //         return NotFound();
+    //     }
+    //     catch (Exception)
+    //     {
+    //         return StatusCode(StatusCodes.Status500InternalServerError,
+    //             "Error retrieving data from the database");
+    //     }
+    // }
     // </snippet_Update>
 
     // POST: api/TodoItems
@@ -115,12 +152,15 @@ public class StudentController : ControllerBase
     {
         return _context.TodoItems.Any(e => e.Id == id);
     }
-
+    private bool TodoNameExists(string searchName)
+    {
+        return _context.TodoItems.Any(e => e.Name == searchName);
+    }
     private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
-       new TodoItemDTO
-       {
-           Id = todoItem.Id,
-           Name = todoItem.Name,
-           IsComplete = todoItem.IsComplete
-       };
+    new TodoItemDTO
+    {
+        Id = todoItem.Id,
+        Name = todoItem.Name,
+        IsComplete = todoItem.IsComplete
+    };
 }

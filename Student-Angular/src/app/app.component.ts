@@ -5,11 +5,15 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { HeaderComponent } from './block/header/header.component';
+import { FooterComponent } from './block/footer/footer.component';
+import {RouterModule} from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, MatPaginatorModule],
+  imports: [CommonModule, FormsModule, MatPaginatorModule,NgxPaginationModule,HeaderComponent,FooterComponent, RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -17,10 +21,15 @@ export class AppComponent {
 [x: string]: any;
   title = 'Student-Angular';
   studentData : any[] = [];
+  searchData : any[] = [];
   selectedStudent : Student | null = null;
   searchName: string = '';
   newStudent: Student = {name:'', isComplete:true }
   constructor(private studentService: StudentService , private http: HttpClient){}
+
+  //paginate
+  data = Array.from({length:50}, (_,i) =>({id: i+1, name:'Item ${i+1}'}));
+  page = 1;
 
   ngOnInit() : void{
     this.studentService.getStudent().subscribe(data => {
@@ -43,36 +52,28 @@ export class AppComponent {
       this.loadStudent();
     })
   }
-  editStudent(student: Student): void {
-    this.selectedStudent = { ...student }; 
+
+  editStudent(id:any){
+    this.studentService.getStudentId(id).subscribe((res:any)=>{
+      this.selectedStudent = res;
+    });    
   }
   updateStudent(): void {
-    // if (this.selectedStudent) {
-    //   this.studentService.updateStudent(this.selectedStudent.id!, this.selectedStudent).subscribe(() => {
-    //     this.loadStudent();
-    //     this.selectedStudent = null;
-    //   });
-    // }
-    if (!this.selectedStudent) return;
-
-    this.studentService.updateStudent(this.selectedStudent).subscribe(updatedStudent => {
-      const index = this.studentData.findIndex(s => s.id === updatedStudent.id);
-      if (index !== -1) {
-        this.studentData[index] = updatedStudent; // Cập nhật danh sách
-      }
-      this.selectedStudent = null; // Thoát chế độ chỉnh sửa
-    }, error => {
-      console.error("Lỗi cập nhật sinh viên:", error);
-    });
+    if (this.selectedStudent) {
+      this.studentService.updateStudent(this.selectedStudent).subscribe(() => {
+        this.loadStudent();
+        this.selectedStudent = null;
+      });
+    }
   }
+
   searchStudent(): void {
     if (this.searchName.trim()) {
       this.studentService.searchStudent(this.searchName).subscribe(data => {
         this.studentData = data;
       });
     } else {
-      this.loadStudent();
+      this.ngOnInit();
     }
   }
 }
-export class PaginatorOverviewExample {};
