@@ -17,13 +17,21 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Students
 build_property.RootNamespace = Students
+<<<<<<< Updated upstream
 build_property.ProjectDir = c:\Users\quoc.truong\Documents\GitHub\Student\Student-API\
+=======
+build_property.ProjectDir = D:\Me\Project\Student\student-API\
+>>>>>>> Stashed changes
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< Updated upstream
 build_property.MSBuildProjectDirectory = c:\Users\quoc.truong\Documents\GitHub\Student\Student-API
+=======
+build_property.MSBuildProjectDirectory = D:\Me\Project\Student\student-API
+>>>>>>> Stashed changes
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
