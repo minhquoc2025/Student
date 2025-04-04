@@ -5,75 +5,28 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { HeaderComponent } from './block/header/header.component';
+import { StudentComponent } from './Page/student/student.component';
 import { FooterComponent } from './block/footer/footer.component';
 import {RouterModule} from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { BobComponent } from './Page/bob/bob.component';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, MatPaginatorModule,NgxPaginationModule,HeaderComponent,FooterComponent, RouterOutlet, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule, 
+    MatPaginatorModule, 
+    NgxPaginationModule, 
+    HeaderComponent, 
+    FooterComponent, 
+    RouterModule, 
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-[x: string]: any;
-  title = 'Student-Angular';
-  studentData : any[] = [];
-  searchData : any[] = [];
-  selectedStudent : Student | null = null;
-  searchName: string = '';
-  newStudent: Student = {name:'', isComplete:true }
-  constructor(private studentService: StudentService , private http: HttpClient){}
-
-  //paginate
-  data = Array.from({length:50}, (_,i) =>({id: i+1, name:'Item ${i+1}'}));
-  page = 1;
-
-  ngOnInit() : void{
-    this.studentService.getStudent().subscribe(data => {
-      this.studentData = data;
-    })
-  }
-  loadStudent(): void{
-    this.studentService.getStudent().subscribe(data => {
-      this.studentData = data;
-    })
-  }
-  addStudent() : void{
-    this.studentService.addStudent(this.newStudent).subscribe(()=>{
-      this.loadStudent();
-      this.newStudent = {name: '', isComplete: true};
-    });
-  }
-  deleteStudent(id:number):void{
-    this.studentService.deleteStudent(id).subscribe(()=>{
-      this.loadStudent();
-    })
-  }
-
-  editStudent(id:any){
-    this.studentService.getStudentId(id).subscribe((res:any)=>{
-      this.selectedStudent = res;
-    });    
-  }
-  updateStudent(): void {
-    if (this.selectedStudent) {
-      this.studentService.updateStudent(this.selectedStudent).subscribe(() => {
-        this.loadStudent();
-        this.selectedStudent = null;
-      });
-    }
-  }
-
-  searchStudent(): void {
-    if (this.searchName.trim()) {
-      this.studentService.searchStudent(this.searchName).subscribe(data => {
-        this.studentData = data;
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
 }

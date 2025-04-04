@@ -5,3 +5,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#fd0bdd, #1a51e7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
