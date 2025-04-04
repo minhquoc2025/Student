@@ -1,27 +1,31 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Student_API._Services.Interfaces;
+using Student_API._Services.Services;
 using TodoApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<TodoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// builder.Services.AddDbContext<TodoContext>(options =>
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDbContext<TodoContext>(opt =>
-    //opt.UseInMemoryDatabase("TodoList"));
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    builder.Services.AddCors(options =>
+
+builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowAngular",
-            PolicyServiceCollectionExtensions =>PolicyServiceCollectionExtensions.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+            PolicyServiceCollectionExtensions => PolicyServiceCollectionExtensions.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
     });
 
+// builder.Services.AddDbContext<TodoContext>(opt =>
+//     //opt.UseInMemoryDatabase("TodoList"));
+//     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<I_TodoServices, S_TodoServices>();
 
 var app = builder.Build();
 
@@ -34,6 +38,10 @@ if (app.Environment.IsDevelopment())
         options.DocumentPath = "/openapi/v1.json";
     });
 }
+
+// exception
+
+// HSTS
 
 app.UseCors("AllowAngular");
 

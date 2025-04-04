@@ -4,10 +4,11 @@ import { CountriesService, Countries } from '../../services/countries.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-bob',
-  imports: [MatPaginatorModule, NgxPaginationModule, CommonModule],
+  imports: [MatPaginatorModule, NgxPaginationModule, CommonModule, FormsModule],
   templateUrl: './bob.component.html',
   styleUrl: './bob.component.css'
 })
@@ -25,13 +26,11 @@ export class BobComponent {
       this.countryData = data;
     })
   }
-  // searchCountries(): void {
-  //   if (this.countryName.trim()) {
-  //     this.countriesService.searchCountry(this.countryName).subscribe(data => {
-  //       this.countryData = data;
-  //     });
-  //   } else {
-  //     this.Loading();
-  //   }
-  // }
+  searchCountries(): void {
+    if (this.countryName.trim()) {
+      this.countriesService.searchCountry(this.countryName).subscribe(data => {
+        this.countryData = data;
+      });
+    } 
+  }
 }

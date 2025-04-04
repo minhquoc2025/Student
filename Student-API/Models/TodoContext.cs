@@ -8,10 +8,12 @@ namespace TodoApi.Models
         {
         }
         public DbSet<TodoItem> TodoItems { get; set; } = null!;
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     base.OnModelCreating(modelBuilder);
-        // }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TodoItem>(x => x.HasKey(x => x.Id));
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
 
