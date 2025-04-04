@@ -1,1 +1,35 @@
-<h1>Welcome to Bob</h1>
+
+<div class="container text-center">
+    <h1>Welcome to RestCountries</h1>
+    <!-- <div class="input-group mb-3">
+        <input  name="searchName" type="text" class="form-control" placeholder="Name of student" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2"  (click)="searchCountries()">RESEARCH</button>
+    </div> -->
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên</th>
+            <th class="col">Ngôn ngữ</th>
+            <th class="col">Thủ đô</th>
+            <th scope="col">Kinh độ, vĩ độ</th>
+            <th scope="col">Dân số</th>
+            <th class="col">Múi giờ</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let countr of countryData | paginate: { itemsPerPage: 20, currentPage: page } ; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{ countr.name.common }}</td>
+                <td>{{ countr.languages.eng }}</td>
+                <td>{{ countr.capital }}</td>
+                <td>{{ countr.latlng }}</td>
+                <td>{{ countr.population }}</td>
+                <td>
+                    {{ countr.timezones }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""></pagination-controls>
+</div>

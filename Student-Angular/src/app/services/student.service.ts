@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 export interface Student{
   id? :number;
   name : string;
-  isComplete : boolean;
-
-}
+  isComplete : boolean;}
 @Injectable({
   providedIn: 'root'
 })
