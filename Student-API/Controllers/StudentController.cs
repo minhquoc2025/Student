@@ -27,9 +27,9 @@ public class StudentController : ControllerBase
     // GET: api/TodoItems/5
     // <snippet_GetByID>
     [HttpGet("{id}")]
-    public async Task<ActionResult> GetTodoItem(long id)
+    public async Task<ActionResult> GetTodoItem(TodoItemDTO model)
     {
-        return Ok(await _services.GetId());
+        return Ok(await _services.GetId(model.Id));
     }
     // </snippet_GetByID>
 

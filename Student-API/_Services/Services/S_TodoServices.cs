@@ -65,11 +65,12 @@ namespace Student_API._Services.Services
             if(todoItem == null)
                 return null;
             return new TodoItemDTO{
-                ID = todoItem.Id,
+                Id = todoItem.Id,
                 Name = todoItem.Name,
-                Iscomplete = todoItem.IsComplete
+                IsComplete = todoItem.IsComplete
             };
         }
+
         public async Task<bool> Update(TodoItemDTO model)
         {
             var todoItem = await _context.TodoItems.FindAsync(model.Id);
