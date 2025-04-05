@@ -59,9 +59,16 @@ namespace Student_API._Services.Services
                 throw;
             }
         }
-        public async Task<bool> GetId(TodoItemDTO model)
+        public async Task<TodoItemDTO> GetId(TodoItemDTO model)
         {
             var todoItem = await _context.TodoItems.FindAsync(model.Id);
+            if(todoItem == null)
+                return null;
+            return new TodoItemDTO{
+                ID = todoItem.Id,
+                Name = todoItem.Name,
+                Iscomplete = todoItem.IsComplete
+            };
         }
         public async Task<bool> Update(TodoItemDTO model)
         {
