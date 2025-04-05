@@ -27,9 +27,9 @@ public class StudentController : ControllerBase
     // GET: api/TodoItems/5
     // <snippet_GetByID>
     [HttpGet("{id}")]
-    public async Task<ActionResult> GetTodoItem(TodoItemDTO model)
+    public async Task<ActionResult> GetTodoItem(long id)
     {
-        return Ok(await _services.GetId(model.Id));
+        return Ok(await _services.GetId(id));
     }
     // </snippet_GetByID>
 
@@ -45,11 +45,11 @@ public class StudentController : ControllerBase
 
     //GetSearch
     [HttpGet("search")]
-    public async Task<ActionResult> SearchStudents([FromQuery] string name)
+    public async Task<ActionResult> SearchStudents(string name)
     {
-        return Ok(await _services.GetAll());
+        return Ok(await _services.Getsearch(name));
     }
-    
+
 
     // POST: api/TodoItems
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -65,6 +65,6 @@ public class StudentController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTodoItem(long id)
     {
-       return Ok(await _services.Delete(id));
+        return Ok(await _services.Delete(id));
     }
 }

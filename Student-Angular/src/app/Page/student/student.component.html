@@ -52,7 +52,8 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">name</th>
-          <th scope="col">id</th>
+          <th class="scope">Address</th>
+          <th class="scope">Class Id</th>
           <th scope="col">isComplete</th>
           <th class="col-1"></th>
         </tr>
@@ -66,7 +67,13 @@
             <td>
               <input type="text" [(ngModel)]="selectedStudent.name" [value]="selectedStudent.name">
             </td>
-            <td>{{selectedStudent.id}}</td>
+            
+            <td>
+              <input type="text" [(ngModel)]="selectedStudent.address" [value]="selectedStudent.address">
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="selectedStudent.class_id" [value]="selectedStudent.class_id">
+            </td>
             <td>
               <input type="radio" name="ucomplete" [(ngModel)]="selectedStudent.isComplete" [value]=true> <span>oke</span>
               <input type="radio" name="ucomplete" [(ngModel)]="selectedStudent.isComplete" [value]=false> <span>fail</span>
@@ -78,7 +85,8 @@
           <tr *ngFor="let student of studentData | paginate: { itemsPerPage: 5, currentPage: page } ; let i = index">
             <td>{{i+1}}</td>
             <td>{{ student.name }}</td>
-            <td>{{ student.id }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.class_id }}</td>
             <td>{{ student.isComplete }}</td>
             <td class=" text-center">
               <button class="btn btn-outline-secondary" (click)="deleteStudent(student.id!)"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 576 512"><path fill="#ff0000" d="M290.7 57.4L57.4 290.7c-25 25-25 65.5 0 90.5l80 80c12 12 28.3 18.7 45.3 18.7L288 480l9.4 0L512 480c17.7 0 32-14.3 32-32s-14.3-32-32-32l-124.1 0L518.6 285.3c25-25 25-65.5 0-90.5L381.3 57.4c-25-25-65.5-25-90.5 0zM297.4 416l-9.4 0-105.4 0-80-80L227.3 211.3 364.7 348.7 297.4 416z"/></svg></button>

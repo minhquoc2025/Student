@@ -21,7 +21,7 @@ export class StudentComponent {
   searchData: any[] = [];
   selectedStudent: Student | null = null;
   searchName: string = '';
-  newStudent: Student = { name: '', isComplete: true }
+  newStudent: Student = { name: '',address: '', isComplete: true, class_id:''}
   constructor(private studentService: StudentService, private http: HttpClient) { }
 
   //paginate
@@ -41,7 +41,7 @@ export class StudentComponent {
   addStudent(): void {
     this.studentService.addStudent(this.newStudent).subscribe(() => {
       this.loadStudent();
-      this.newStudent = { name: '', isComplete: true };
+      this.newStudent = { name: '',address: '', isComplete: true, class_id:'' };
     });
   }
   deleteStudent(id: number): void {

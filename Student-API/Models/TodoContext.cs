@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StudentAPI.Models;
 
 namespace TodoApi.Models
 {
@@ -8,7 +9,7 @@ namespace TodoApi.Models
         {
         }
         public DbSet<TodoItem> TodoItems { get; set; } = null!;
-
+        public DbSet<ClassItem> ClassItems { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TodoItem>(x => x.HasKey(x => x.Id));
@@ -16,4 +17,3 @@ namespace TodoApi.Models
         }
     }
 }
-

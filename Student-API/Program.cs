@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Student_API._Services.Interfaces;
 using Student_API._Services.Services;
+using StudentAPI._Services.Interfaces;
+using StudentAPI._Services.Services;
 using TodoApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +28,7 @@ builder.Services.AddCors(options =>
 //     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<I_TodoServices, S_TodoServices>();
-
+builder.Services.AddScoped<I_Class, S_Class>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
